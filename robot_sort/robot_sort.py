@@ -98,42 +98,58 @@ class SortingRobot:
         """
         # Fill this out
 
-        while not self.light_is_on(): #bubble sort
+        for index in range(1, 1000000):
+            if self.light_is_on(): #bubble sort
+                break
             #print(self._item)
             #print(self._list)
             self.set_light_on()
             while self.can_move_right():
+                self.swap_item()  
+  
+                for n in range(2):
+                    if not self.can_move_right():
+                        break
+
+                    self.move_right()
+                    if self.compare_item() == 1:  
+                        self.swap_item()
+                        self.set_light_off()
+                        break
+
+                while self.compare_item() != None:
+                    self.move_left()
+
                 self.swap_item()
                 self.move_right()
-    
-                if self.compare_item() == 1:  
-                        self.swap_item()
-                        self.move_left()
-                        self.swap_item()
-                        self.move_right()
-                        self.set_light_off()
-                else:
-                    self.move_left()
-                    self.swap_item()
-                    self.move_right()
 
             if self.light_is_on():
                 break
 
+            for i in range(0, index):
+                self.move_left()
+
             while self.can_move_left():
                 self.swap_item()
-                self.move_left()
-    
-                if self.compare_item() == -1:  
-                        self.swap_item()
-                        self.move_right()
-                        self.swap_item()
-                        self.move_left()
-                        self.set_light_off()
-                else:
-                    self.move_right()
-                    self.swap_item()
+  
+                for n in range(2):
+                    if not self.can_move_left():
+                        break
+
                     self.move_left()
+                    if self.compare_item() == -1:  
+                        self.swap_item()
+                        self.set_light_off()
+                        break
+
+                while self.compare_item() != None:
+                    self.move_right()
+
+                self.swap_item()
+                self.move_left()
+
+            for i in range(0, index):
+                self.move_right()
 
 
 
