@@ -101,8 +101,7 @@ class SortingRobot:
         for index in range(1, 1000000):
             if self.light_is_on(): #bubble sort
                 break
-            #print(self._item)
-            #print(self._list)
+
             self.set_light_on()
             while self.can_move_right():
                 self.swap_item()  
